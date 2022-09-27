@@ -39,13 +39,21 @@ const selectOperation = (e) => {
 const calculate = () => {
   const currentValue = parseFloat(currentArea.innerText);
   const previousValue = parseFloat(previousArea.innerText.slice(0, -1));
+  console.log(previousArea.innerText.slice(0, -1));
+  if (previousArea.innerText.charAt() === "-") {
+  }
   let calcValue;
   if (previousArea.innerText.includes("+")) {
     calcValue = currentValue + previousValue;
     previousArea.innerText = "";
     currentArea.innerText = calcValue;
   } else if (previousArea.innerText.includes("-")) {
-    calcValue = currentValue - previousValue;
+    if (previousValue > currentValue) {
+      calcValue = -1 * (currentValue - previousValue);
+    } else {
+      calcValue = previousValue - currentValue;
+    }
+
     previousArea.innerText = "";
     currentArea.innerText = calcValue;
   } else if (previousArea.innerText.includes("x")) {
